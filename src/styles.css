@@ -177,7 +177,11 @@
 .site-header { height: 100px; display: flex; align-items: center; justify-content: space-between; padding: 0 64px; border-bottom: 1px solid var(--border); }
 .brand { display: flex; align-items: center; gap: 12px; font-size: 16px; font-weight: 800; letter-spacing: 0; }
 .brand-mark { width: 30px; height: 30px; color: var(--primary); }
-.header-tools { display: flex; align-items: center; gap: 20px; }
+.header-tools { display: flex; align-items: center; gap: 4px; }
+.header-tools .header-note { margin-right: 8px; }
+.lang-switcher { height: 40px; padding: 0 10px; font-size: 11px; font-weight: 600; letter-spacing: .04em; color: var(--muted-foreground); }
+.lang-switcher:hover { color: var(--foreground); }
+.lang-code { width: 22px; font-size: 10px; font-weight: 600; color: var(--muted-foreground); }
 .theme-toggle { color: var(--muted-foreground); }
 .theme-toggle:hover { color: var(--foreground); }
 .header-note { display: flex; gap: 10px; align-items: center; color: var(--muted-foreground); font-size: 11px; text-transform: uppercase; }
@@ -273,8 +277,7 @@ progress::-moz-progress-bar { background: var(--primary); }
 @media (max-width: 600px) {
   .site-header { padding: 0 22px; height: 76px; }
   .brand { font-size: 14px; gap: 8px; }
-  .header-note { font-size: 9px; }
-  .header-note .desktop-note { display: none; }
+  .header-note { display: none; }
   .landing-hero { min-height: 650px; align-items: flex-start; }
   .hero-image { object-position: 65% center; opacity: .62; }
   .hero-copy { padding: 48px 22px 64px; }

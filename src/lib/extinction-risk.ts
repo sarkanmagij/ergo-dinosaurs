@@ -28,7 +28,11 @@ export function extinctionRiskScore(answers: Answers, regulated: boolean, name: 
 export function rankAssessment(assessment: Assessment) {
   return assessment.entries.map(entry => ({ ...entry, score: extinctionRiskScore(entry.answers, assessment.regulated, entry.name) })).sort((a, b) => b.score - a.score);
 }
-export function diagnose(answers: Answers, score: number) {
-  const dominant = questions.map((q, i) => ({ ...q, value: answers[i] ?? 0 })).sort((a, b) => b.value - a.value).filter(q => q.value > 0).slice(0, 3);
-  return { dominant, paragraph: dominant.length ? dominant.map(q => q.diagnosis).join(' ') + (score >= 60 ? " That's not a process. That's a hostage situation." : 'Not an extinction event yet. Still worth fixing before it grows teeth.') : 'No obvious fault lines in these answers. Keep the checks, backups, and documentation alive. Fossil-stable does not mean immortal.' };
+export type DiagnosisCopy = { questions: Record<(typeof questions)[number]['key'], { diagnosis: string; why: string; action: string }>; closers: { hostage: string; notYet: string; clean: string } };
+const defaultClosers: DiagnosisCopy['closers'] = { hostage: "That's not a process. That's a hostage situation.", notYet: 'Not an extinction event yet. Still worth fixing before it grows teeth.', clean: 'No obvious fault lines in these answers. Keep the checks, backups, and documentation alive. Fossil-stable does not mean immortal.' };
+// `copy` swaps in translated templates; the selection logic stays here for every language.
+export function diagnose(answers: Answers, score: number, copy?: DiagnosisCopy) {
+  const closers = copy?.closers ?? defaultClosers;
+  const dominant = questions.map((q, i) => { const c = copy?.questions[q.key] ?? q; return { key: q.key, diagnosis: c.diagnosis, why: c.why, action: c.action, value: answers[i] ?? 0 }; }).sort((a, b) => b.value - a.value).filter(q => q.value > 0).slice(0, 3);
+  return { dominant, paragraph: dominant.length ? dominant.map(q => q.diagnosis).join(' ') + ' ' + (score >= 60 ? closers.hostage : closers.notYet) : closers.clean };
 }

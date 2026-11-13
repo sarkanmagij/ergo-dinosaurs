@@ -34,3 +34,4 @@ use the editor.
 - Keep risk math and diagnosis templates in `src/lib/extinction-risk.ts` so scoring is transparent and independently testable.
 - Keep optional storage SQL unapplied in `docs/`; no personal data is collected until a consented server handler is enabled.
 - Dispatch lightweight analytics as `trex:analytics` custom events without emails; an external listener can be connected later.
+- Keep stored and shared values (process names, industries, tiers) in canonical English and translate only at render time through `src/lib/i18n/` (`en`, `et`, `lv`, `lt`); every dictionary must satisfy the `Dict` type, and translated diagnosis copy is passed into `diagnose()` rather than duplicating its logic.
