@@ -2,6 +2,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
 import { ArrowRight, ArrowLeft, ArrowUpRight, Clock3, Check, Plus, Download, Link2, RotateCcw, Flame, BriefcaseBusiness, UserRoundPlus, Headphones, Receipt, ShoppingCart, Users, ChartNoAxesCombined, ShieldCheck, Server, Package, MessageSquareWarning, Database, LockKeyhole } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { ThemeToggle } from '@/components/theme-toggle';
 import meteorImage from '@/assets/meteor-landscape.jpg';
 import { processes, questions, rankAssessment, riskTier, timeToImpact, diagnose, isValidSelection, type Answers, type Assessment } from '@/lib/extinction-risk';
 import { decodeAssessment, encodeAssessment } from '@/lib/share-assessment';
@@ -22,7 +23,7 @@ export const Route = createFileRoute('/')({
 const icons = [BriefcaseBusiness, UserRoundPlus, Headphones, Receipt, ShoppingCart, Users, ChartNoAxesCombined, ShieldCheck, Server, Package, MessageSquareWarning, Database];
 const industries = ['Technology', 'Financial services', 'Healthcare', 'Manufacturing', 'Retail & e-commerce', 'Professional services', 'Logistics & transport', 'Construction', 'Public sector', 'Other'];
 function Header({ reset }: { reset: () => void }) {
-  return <header className="site-header"><Button variant="ghost" onClick={reset} className="brand h-auto px-0 hover:bg-transparent" aria-label="The T-Rex Test home"><Flame className="brand-mark" strokeWidth={1.5} /><span>THE T-REX TEST<span className="text-primary">.</span></span></Button><div className="header-note"><span className="status-dot" /><span className="desktop-note">An extinction risk diagnostic</span><span className="md:hidden">5-minute autopsy</span></div></header>;
+  return <header className="site-header"><Button variant="ghost" onClick={reset} className="brand h-auto px-0 hover:bg-transparent" aria-label="The T-Rex Test home"><Flame className="brand-mark" strokeWidth={1.5} /><span>THE T-REX TEST<span className="text-primary">.</span></span></Button><div className="header-tools"><div className="header-note"><span className="status-dot" /><span className="desktop-note">An extinction risk diagnostic</span><span className="md:hidden">5-minute autopsy</span></div><ThemeToggle /></div></header>;
 }
 function Landing({ start }: { start: () => void }) {
   return <>
