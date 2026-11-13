@@ -28,3 +28,9 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Application rules
+- Keep assessment state in the client and encode validated results in compressed URL fragments; v1 must not require storage or sign-in.
+- Keep risk math and diagnosis templates in `src/lib/extinction-risk.ts` so scoring is transparent and independently testable.
+- Keep optional storage SQL unapplied in `docs/`; no personal data is collected until a consented server handler is enabled.
+- Dispatch lightweight analytics as `trex:analytics` custom events without emails; an external listener can be connected later.
